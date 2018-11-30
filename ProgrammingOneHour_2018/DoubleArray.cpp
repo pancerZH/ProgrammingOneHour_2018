@@ -8,11 +8,13 @@ int* array;
 void Double_array()
 {
 	init();
-	for (int i = 1; i <= NUM; i++)
+	for (int i = 1; i <= NUM; i++)  // test: add elements in the number of NUM
 	{
 		Add_element(i);
 	}
 	Show_array();
+
+	free(array);  // we hd better release the space of array after finishing
 }
 
 bool init()
@@ -20,9 +22,9 @@ bool init()
 	capacity = 10;
 	currentSize = 0;
 	array = (int*)malloc(capacity * sizeof(int));
-	if (array == NULL)
+	if (array == NULL)  // check if malloc succeeded
 	{
-		fprintf(stderr, "Failed to malloc long enough array\n");
+		fprintf(stderr, "Failed to malloc space big enough\n");
 		exit(1);
 	}
 	return true;
@@ -34,16 +36,16 @@ bool Add_element(const int elem)
 	{
 		capacity *= RATE;
 		int* newArr = (int*)malloc(capacity * sizeof(int));  // create a new array with a doubled size
-		if (newArr == NULL)
+		if (newArr == NULL)  // check if malloc succeeded
 		{
-			fprintf(stderr, "Failed to malloc long enough array\n");
+			fprintf(stderr, "Failed to malloc space big enough\n");
 			exit(1);
 		}
 
-		for (int i = 0; i < currentSize; i++)
+		for (int i = 0; i < currentSize; i++)  // copy data from the old array to the new one
 			*(newArr + i) = *(array + i);
 
-		free(array);
+		free(array);  // release the space of old array
 		array = newArr;
 		Show_array();
 	}
