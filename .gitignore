@@ -1,4 +1,4 @@
 Debug/*
-.vs/*
-ProgrammingOneHour_2018/Debug/*
-x64/*
+Windows/.vs/*
+Windows/x64/*
+Windows/ProgrammingOneHour_2018/x64/*
